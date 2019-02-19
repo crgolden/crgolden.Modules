@@ -1,0 +1,35 @@
+{
+  "name": "@clarity/service",
+  "private": true,
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node_modules/.bin/jasmine"
+  },
+  "devDependencies": {
+    "@angular/animations": "latest",
+    "@angular/common": "latest",
+    "@angular/core": "latest",
+    "@angular/forms": "latest",
+    "@angular/platform-browser": "latest",
+    "@progress/kendo-angular-buttons": "latest",
+    "@progress/kendo-angular-dateinputs": "latest",
+    "@progress/kendo-angular-dropdowns": "latest",
+    "@progress/kendo-angular-excel-export": "latest",
+    "@progress/kendo-angular-grid": "latest",
+    "@progress/kendo-angular-inputs": "latest",
+    "@progress/kendo-angular-intl": "latest",
+    "@progress/kendo-angular-l10n": "latest",
+    "@progress/kendo-data-query": "latest",
+    "@progress/kendo-drawing": "latest",
+    "@types/jasmine": "latest",
+    "jasmine": "latest",
+    "rxjs": "latest",
+    "rxjs-compat": "latest",
+    "tslint": "latest",
+    "typescript": "~3.2.4",
+    "zone.js": "latest"
+  }
+}
