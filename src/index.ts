@@ -22,9 +22,11 @@ export abstract class Service<T> {
     });
   }
 
-  protected getQueryString = (ids: Array<object>): string => ids
-    .reduce((result: string, id: object, index: number) => result + `ids[${index}]=${id}&`, '')
-    .slice(0, -1);
+  protected getQueryString(ids: Array<object>): string {
+    return ids
+      .reduce((result: string, id: object, index: number) => result + `ids[${index}]=${id}&`, '')
+      .slice(0, -1);
+  }
 
   index$(state: DataSourceRequestState): Observable<GridDataResult> {
     const hasGroups = state.group && state.group.length > 0;
