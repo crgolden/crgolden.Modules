@@ -1,16 +1,16 @@
 {
   "name": "@clarity/service",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "https://crgolden.visualstudio.com/Cef/_git/Clarity.Modules.Service",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "node_modules/.bin/jasmine --config=jasmine.json",
+    "test": "jasmine --config=jasmine.json",
     "lint": "tslint --project tsconfig.json -c tslint.json 'src/**/*.ts'"
   },
-  "devDependencies": {
+  "dependencies": {
     "@angular/animations": "latest",
     "@angular/common": "latest",
     "@angular/compiler": "latest",
@@ -28,12 +28,14 @@
     "@progress/kendo-data-query": "latest",
     "@progress/kendo-drawing": "latest",
     "@types/jasmine": "latest",
-    "codelyzer": "latest",
-    "jasmine": "latest",
     "rxjs": "latest",
     "rxjs-compat": "latest",
-    "tslint": "latest",
-    "typescript": "~3.2.4",
     "zone.js": "latest"
+  },
+  "devDependencies": {
+    "codelyzer": "latest",
+    "jasmine": "latest",
+    "tslint": "latest",
+    "typescript": "~3.2.4"
   }
 }
