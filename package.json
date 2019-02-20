@@ -1,7 +1,7 @@
 {
-  "name": "@clarity/service",
-  "version": "1.0.2",
-  "repository": "https://crgolden.visualstudio.com/Cef/_git/Clarity.Modules.Service",
+  "name": "@clarity/services",
+  "version": "0.1.0",
+  "repository": "https://crgolden.visualstudio.com/Clarity/_git/Clarity.Modules.Services",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
