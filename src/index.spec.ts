@@ -3,7 +3,7 @@ import { defer } from 'rxjs';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { Service } from './index';
 
-class ModelService extends Service<object> {
+class ModelService extends Service<object, string> {
   constructor(http: any) {
     super('', '', http);
   }
@@ -52,7 +52,7 @@ describe('ModelService', () => {
     httpBaseModelSpy.get.and.returnValue(defer(() => Promise.resolve(model1)));
 
     modelService
-      .details$(new Array<object>(model1['id']))
+      .details$(new Array<string>(model1['id']))
       .subscribe((result: object) => {
         expect(result).toEqual(model1, 'expected model1');
         expect(httpBaseModelSpy.get.calls.count()).toBe(1, 'one call');
@@ -88,7 +88,7 @@ describe('ModelService', () => {
     httpBaseModelSpy.delete.and.returnValue(defer(() => Promise.resolve()));
 
     modelService
-      .delete$(new Array<object>(model1['id']))
+      .delete$(new Array<string>(model1['id']))
       .subscribe((result: Object) => {
         expect(result).toBeUndefined('expected undefined');
         expect(httpBaseModelSpy.delete.calls.count()).toBe(1, 'one call');

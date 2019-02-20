@@ -8,7 +8,7 @@ import {
 } from '@progress/kendo-data-query';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 
-export abstract class Service<T> {
+export abstract class Service<TClass, TKey> {
 
   protected constructor(
     private readonly controllerName: string,
@@ -22,9 +22,9 @@ export abstract class Service<T> {
     });
   }
 
-  protected getQueryString(ids: Array<object>): string {
+  protected getQueryString(ids: Array<TKey>): string {
     return ids
-      .reduce((result: string, id: object, index: number) => result + `ids[${index}]=${id}&`, '')
+      .reduce((result: string, id: TKey, index: number) => result + `ids[${index}]=${id}&`, '')
       .slice(0, -1);
   }
 
@@ -40,40 +40,40 @@ export abstract class Service<T> {
       })));
   }
 
-  details$(ids: Array<object>): Observable<T> {
+  details$(ids: Array<TKey>): Observable<TClass> {
     return this.http
-      .get<T>(`${this.apiUrl}/${this.controllerName}/details?${this.getQueryString(ids)}`);
+      .get<TClass>(`${this.apiUrl}/${this.controllerName}/details?${this.getQueryString(ids)}`);
   }
 
-  create$(model: T): Observable<T> {
+  create$(model: TClass): Observable<TClass> {
     return this.http
-      .post<T>(`${this.apiUrl}/${this.controllerName}/create`, JSON.stringify(model), {
+      .post<TClass>(`${this.apiUrl}/${this.controllerName}/create`, JSON.stringify(model), {
         headers: this.headers
       });
   }
 
-  createRange$(models: Array<T>): Observable<Array<T>> {
+  createRange$(models: Array<TClass>): Observable<Array<TClass>> {
     return this.http
-      .post<Array<T>>(`${this.apiUrl}/${this.controllerName}/create-range`, JSON.stringify(models), {
+      .post<Array<TClass>>(`${this.apiUrl}/${this.controllerName}/create-range`, JSON.stringify(models), {
         headers: this.headers
       });
   }
 
-  edit$(model: T): Observable<Object> {
+  edit$(model: TClass): Observable<Object> {
     return this.http
       .put(`${this.apiUrl}/${this.controllerName}/edit`, JSON.stringify(model), {
         headers: this.headers
       });
   }
 
-  editRange$(models: Array<T>): Observable<Object> {
+  editRange$(models: Array<TClass>): Observable<Object> {
     return this.http
       .put(`${this.apiUrl}/${this.controllerName}/edit-range`, JSON.stringify(models), {
         headers: this.headers
       });
   }
 
-  delete$(ids: Array<object>): Observable<Object> {
+  delete$(ids: Array<TKey>): Observable<Object> {
     return this.http
       .delete(`${this.apiUrl}/${this.controllerName}/delete?${this.getQueryString(ids)}`);
   }
