@@ -3,103 +3,103 @@ import { defer } from 'rxjs';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { Service } from './index';
 
-class ModelService extends Service<object, string> {
+class EntityService extends Service<object, string> {
   constructor(http: any) {
     super('', '', http);
   }
 }
 
-let httpBaseModelSpy: any;
-let modelService: ModelService;
-let model1: object;
+let httpBaseEntitySpy: any;
+let entityService: EntityService;
+let entity1: object;
 
-describe('ModelService', () => {
+describe('EntityService', () => {
 
   beforeEach(() => {
-    httpBaseModelSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
-    modelService = new ModelService(httpBaseModelSpy);
-    model1 = {
+    httpBaseEntitySpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
+    entityService = new EntityService(httpBaseEntitySpy);
+    entity1 = {
       id: '1',
-      name: 'Model 1',
+      name: 'Entity 1',
       created: new Date()
     };
   });
 
-  it('index should return a list of models', (done: DoneFn) => {
-    const model2: object = {
+  it('index should return a list of entities', (done: DoneFn) => {
+    const entity2: object = {
       id: '2',
-      name: 'Model 2',
+      name: 'Entity 2',
       created: new Date()
     };
-    const models = new Array<object>(model1, model2);
-    const modelsGridDataResult: GridDataResult = {
-      data: models,
-      total: models.length
+    const entities = new Array<object>(entity1, entity2);
+    const entitiesGridDataResult: GridDataResult = {
+      data: entities,
+      total: entities.length
     };
 
-    httpBaseModelSpy.get.and.returnValue(defer(() => Promise.resolve(modelsGridDataResult)));
+    httpBaseEntitySpy.get.and.returnValue(defer(() => Promise.resolve(entitiesGridDataResult)));
 
-    modelService
+    entityService
       .index$({})
       .subscribe((result: GridDataResult) => {
-        expect(result).toEqual(modelsGridDataResult, 'expected models');
-        expect(httpBaseModelSpy.get.calls.count()).toBe(1, 'one call');
+        expect(result).toEqual(entitiesGridDataResult, 'expected entities');
+        expect(httpBaseEntitySpy.get.calls.count()).toBe(1, 'one call');
         done();
       });
   });
 
-  it('details should return a model', (done: DoneFn) => {
-    httpBaseModelSpy.get.and.returnValue(defer(() => Promise.resolve(model1)));
+  it('details should return a entity', (done: DoneFn) => {
+    httpBaseEntitySpy.get.and.returnValue(defer(() => Promise.resolve(entity1)));
 
-    modelService
-      .details$(new Array<string>(model1['id']))
+    entityService
+      .details$(new Array<string>(entity1['id']))
       .subscribe((result: object) => {
-        expect(result).toEqual(model1, 'expected model1');
-        expect(httpBaseModelSpy.get.calls.count()).toBe(1, 'one call');
+        expect(result).toEqual(entity1, 'expected entity1');
+        expect(httpBaseEntitySpy.get.calls.count()).toBe(1, 'one call');
         done();
       });
   });
 
-  it('create should return a model', (done: DoneFn) => {
-    httpBaseModelSpy.post.and.returnValue(defer(() => Promise.resolve(model1)));
+  it('create should return a entity', (done: DoneFn) => {
+    httpBaseEntitySpy.post.and.returnValue(defer(() => Promise.resolve(entity1)));
 
-    modelService
-      .create$(model1)
+    entityService
+      .create$(entity1)
       .subscribe((result: object) => {
-        expect(result).toEqual(model1, 'expected model1');
-        expect(httpBaseModelSpy.post.calls.count()).toBe(1, 'one call');
+        expect(result).toEqual(entity1, 'expected entity1');
+        expect(httpBaseEntitySpy.post.calls.count()).toBe(1, 'one call');
         done();
       });
   });
 
   it('edit should not return anything', (done: DoneFn) => {
-    httpBaseModelSpy.put.and.returnValue(defer(() => Promise.resolve()));
+    httpBaseEntitySpy.put.and.returnValue(defer(() => Promise.resolve()));
 
-    modelService
-      .edit$(model1)
+    entityService
+      .edit$(entity1)
       .subscribe((result: Object) => {
         expect(result).toBeUndefined('expected undefined');
-        expect(httpBaseModelSpy.put.calls.count()).toBe(1, 'one call');
+        expect(httpBaseEntitySpy.put.calls.count()).toBe(1, 'one call');
         done();
       });
   });
 
   it('delete should not return anything', (done: DoneFn) => {
-    httpBaseModelSpy.delete.and.returnValue(defer(() => Promise.resolve()));
+    httpBaseEntitySpy.delete.and.returnValue(defer(() => Promise.resolve()));
 
-    modelService
-      .delete$(new Array<string>(model1['id']))
+    entityService
+      .delete$(new Array<string>(entity1['id']))
       .subscribe((result: Object) => {
         expect(result).toBeUndefined('expected undefined');
-        expect(httpBaseModelSpy.delete.calls.count()).toBe(1, 'one call');
+        expect(httpBaseEntitySpy.delete.calls.count()).toBe(1, 'one call');
         done();
       });
   });
 
   afterEach(() => {
-    httpBaseModelSpy = undefined;
-    modelService = undefined;
-    model1 = undefined;
+    httpBaseEntitySpy = undefined;
+    entityService = undefined;
+    entity1 = undefined;
   });
 
 });
