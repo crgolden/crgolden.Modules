@@ -1,4 +1,4 @@
-export abstract class Entity {
+export abstract class Model {
   created: Date;
   updated?: Date;
 }

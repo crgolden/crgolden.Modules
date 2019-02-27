@@ -1,6 +1,6 @@
 {
-  "name": "@clarity/entities",
-  "version": "0.1.1",
+  "name": "@clarity/models",
+  "version": "0.1.0",
   "repository": "https://crgolden.visualstudio.com/Clarity/_git/Clarity.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",
