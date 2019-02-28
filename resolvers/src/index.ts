@@ -21,7 +21,7 @@ export abstract class IndexResolver<T> implements Resolve<T[]> {
   protected aggregates: AggregateDescriptor[];
   protected group: GroupDescriptor[];
 
-  protected constructor(private readonly service: Service<T, any>) {
+  protected constructor(private readonly service: Service<T>) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T[]> {
@@ -37,14 +37,14 @@ export abstract class IndexResolver<T> implements Resolve<T[]> {
   }
 }
 
-export abstract class DetailsResolver<TClass> implements Resolve<TClass> {
+export abstract class DetailsResolver<T> implements Resolve<T> {
 
   protected keyValues: any[];
 
-  protected constructor(private readonly service: Service<TClass>) {
+  protected constructor(private readonly service: Service<T>) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<TClass> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T> {
     return this.service.details$(this.keyValues).pipe(
       map(result => result),
       take(1));
