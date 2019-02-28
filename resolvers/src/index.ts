@@ -37,11 +37,11 @@ export abstract class IndexResolver<T> implements Resolve<T[]> {
   }
 }
 
-export abstract class DetailsResolver<TClass, TKey> implements Resolve<TClass> {
+export abstract class DetailsResolver<TClass> implements Resolve<TClass> {
 
-  protected keyValues: TKey[];
+  protected keyValues: any[];
 
-  protected constructor(private readonly service: Service<TClass, TKey>) {
+  protected constructor(private readonly service: Service<TClass>) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<TClass> {
