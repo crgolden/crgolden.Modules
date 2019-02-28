@@ -36,3 +36,17 @@ export abstract class IndexResolver<T> implements Resolve<T[]> {
       take(1));
   }
 }
+
+export abstract class DetailsResolver<TClass, TKey> implements Resolve<TClass> {
+
+  protected keyValues: TKey[];
+
+  protected constructor(private readonly service: Service<TClass, TKey>) {
+  }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<TClass> {
+    return this.service.details$(this.keyValues).pipe(
+      map(result => result),
+      take(1));
+  }
+}

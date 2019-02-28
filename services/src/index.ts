@@ -22,7 +22,7 @@ export abstract class Service<TClass, TKey> {
     });
   }
 
-  protected getQueryString(ids: Array<TKey>): string {
+  private getQueryString(ids: TKey[]): string {
     return ids
       .reduce((result: string, id: TKey, index: number) => result + `ids[${index}]=${id}&`, '')
       .slice(0, -1);
@@ -40,7 +40,7 @@ export abstract class Service<TClass, TKey> {
       })));
   }
 
-  details$(ids: Array<TKey>): Observable<TClass> {
+  details$(ids: TKey[]): Observable<TClass> {
     return this.http
       .get<TClass>(`${this.apiUrl}/${this.controllerName}/details?${this.getQueryString(ids)}`);
   }
@@ -52,9 +52,9 @@ export abstract class Service<TClass, TKey> {
       });
   }
 
-  createRange$(models: Array<TClass>): Observable<Array<TClass>> {
+  createRange$(models: TClass[]): Observable<TClass[]> {
     return this.http
-      .post<Array<TClass>>(`${this.apiUrl}/${this.controllerName}/create-range`, JSON.stringify(models), {
+      .post<TClass[]>(`${this.apiUrl}/${this.controllerName}/create-range`, JSON.stringify(models), {
         headers: this.headers
       });
   }
@@ -66,14 +66,14 @@ export abstract class Service<TClass, TKey> {
       });
   }
 
-  editRange$(models: Array<TClass>): Observable<Object> {
+  editRange$(models: TClass[]): Observable<Object> {
     return this.http
       .put(`${this.apiUrl}/${this.controllerName}/edit-range`, JSON.stringify(models), {
         headers: this.headers
       });
   }
 
-  delete$(ids: Array<TKey>): Observable<Object> {
+  delete$(ids: TKey[]): Observable<Object> {
     return this.http
       .delete(`${this.apiUrl}/${this.controllerName}/delete?${this.getQueryString(ids)}`);
   }
