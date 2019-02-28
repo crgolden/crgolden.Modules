@@ -8,7 +8,7 @@ import {
 } from '@progress/kendo-data-query';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 
-export abstract class Service<TClass, TKey> {
+export abstract class Service<TClass> {
 
   protected constructor(
     private readonly controllerName: string,
@@ -22,9 +22,9 @@ export abstract class Service<TClass, TKey> {
     });
   }
 
-  private getQueryString(ids: TKey[]): string {
+  private getQueryString(ids: any[]): string {
     return ids
-      .reduce((result: string, id: TKey, index: number) => result + `ids[${index}]=${id}&`, '')
+      .reduce((result, id, index) => result + `ids[${index}]=${id}&`, '')
       .slice(0, -1);
   }
 
@@ -40,7 +40,7 @@ export abstract class Service<TClass, TKey> {
       })));
   }
 
-  details$(ids: TKey[]): Observable<TClass> {
+  details$(ids: any[]): Observable<TClass> {
     return this.http
       .get<TClass>(`${this.apiUrl}/${this.controllerName}/details?${this.getQueryString(ids)}`);
   }
@@ -73,7 +73,7 @@ export abstract class Service<TClass, TKey> {
       });
   }
 
-  delete$(ids: TKey[]): Observable<Object> {
+  delete$(ids: any[]): Observable<Object> {
     return this.http
       .delete(`${this.apiUrl}/${this.controllerName}/delete?${this.getQueryString(ids)}`);
   }
