@@ -27,14 +27,15 @@ export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<GridDataResult> {
-    return this.service.index$({
+    this.service.state = {
       skip: this.skip,
       take: this.take,
       filter: this.filter,
       aggregates: this.aggregates,
       group: this.group,
       sort: this.sort
-    }).pipe(
+    };
+    return this.service.index$().pipe(
       map(result => result),
       take(1));
   }
