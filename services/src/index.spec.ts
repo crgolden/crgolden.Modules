@@ -40,7 +40,7 @@ describe('Service', () => {
     httpClientSpy.get.and.returnValue(defer(() => Promise.resolve(objectsGridDataResult)));
 
     objectService
-      .index$({})
+      .index$()
       .subscribe((result: GridDataResult) => {
         expect(result).toEqual(objectsGridDataResult, 'expected objects');
         expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');

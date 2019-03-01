@@ -2,35 +2,45 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
+  DataSourceRequestState,
   toDataSourceRequestString,
-  translateDataSourceResultGroups,
-  DataSourceRequestState
+  translateDataSourceResultGroups
 } from '@progress/kendo-data-query';
-import { GridDataResult } from '@progress/kendo-angular-grid';
+import {
+  GridDataResult,
+  PagerSettings,
+  SortSettings
+} from '@progress/kendo-angular-grid';
 
 export abstract class Service<TClass> {
+
+  state: DataSourceRequestState;
+  pageable: PagerSettings;
+  sortable: SortSettings;
 
   protected constructor(
     private readonly controllerName: string,
     private readonly apiUrl: string,
     protected readonly http: HttpClient) {
+    this.state = {
+    };
   }
 
-  protected get headers(): HttpHeaders {
+  private get headers(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json'
     });
   }
 
-  private getQueryString(ids: any[]): string {
+  private toQueryString(ids: any[]): string {
     return ids
       .reduce((result, id, index) => result + `ids[${index}]=${id}&`, '')
       .slice(0, -1);
   }
 
-  index$(state: DataSourceRequestState): Observable<GridDataResult> {
-    const hasGroups = state.group && state.group.length > 0;
-    const queryStr = toDataSourceRequestString(state);
+  index$(): Observable<GridDataResult> {
+    const hasGroups = this.state.group && this.state.group.length > 0;
+    const queryStr = toDataSourceRequestString(this.state);
 
     return this.http
       .get<GridDataResult>(`${this.apiUrl}/${this.controllerName}/index?${queryStr}`)
@@ -42,7 +52,7 @@ export abstract class Service<TClass> {
 
   details$(ids: any[]): Observable<TClass> {
     return this.http
-      .get<TClass>(`${this.apiUrl}/${this.controllerName}/details?${this.getQueryString(ids)}`);
+      .get<TClass>(`${this.apiUrl}/${this.controllerName}/details?${this.toQueryString(ids)}`);
   }
 
   create$(model: TClass): Observable<TClass> {
@@ -75,6 +85,6 @@ export abstract class Service<TClass> {
 
   delete$(ids: any[]): Observable<Object> {
     return this.http
-      .delete(`${this.apiUrl}/${this.controllerName}/delete?${this.getQueryString(ids)}`);
+      .delete(`${this.apiUrl}/${this.controllerName}/delete?${this.toQueryString(ids)}`);
   }
 }
