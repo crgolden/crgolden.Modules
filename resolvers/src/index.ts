@@ -12,9 +12,10 @@ import {
   GroupDescriptor,
   SortDescriptor
 } from '@progress/kendo-data-query';
+import { GridDataResult } from '@progress/kendo-angular-grid';
 import { Service } from '@clarity/services';
 
-export abstract class IndexResolver<T> implements Resolve<T[]> {
+export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
 
   protected filter: CompositeFilterDescriptor;
   protected sort: SortDescriptor[];
@@ -24,7 +25,7 @@ export abstract class IndexResolver<T> implements Resolve<T[]> {
   protected constructor(private readonly service: Service<T>) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T[]> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<GridDataResult> {
     const request: DataSourceRequestState = {
       filter: this.filter,
       aggregates: this.aggregates,
@@ -32,7 +33,7 @@ export abstract class IndexResolver<T> implements Resolve<T[]> {
       sort: this.sort
     };
     return this.service.index$(request).pipe(
-      map(result => result.data),
+      map(result => result),
       take(1));
   }
 }
