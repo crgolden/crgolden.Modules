@@ -38,7 +38,7 @@ export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
 
 export abstract class DetailsResolver<T> implements Resolve<T> {
 
-  protected abstract ids: any[];
+  protected ids: any[];
 
   protected constructor(private readonly service: Service<T>) {
   }
