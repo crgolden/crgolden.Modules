@@ -17,6 +17,8 @@ import { Service } from '@clarity/services';
 
 export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
 
+  protected skip: number;
+  protected take: number;
   protected filter: CompositeFilterDescriptor;
   protected sort: SortDescriptor[];
   protected aggregates: AggregateDescriptor[];
@@ -25,8 +27,10 @@ export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
   protected constructor(private readonly service: Service<T>) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<GridDataResult> {
+  resolve(): Observable<GridDataResult> {
     const request: DataSourceRequestState = {
+      skip: this.skip,
+      take: this.take,
       filter: this.filter,
       aggregates: this.aggregates,
       group: this.group,
