@@ -1,6 +1,6 @@
 {
   "name": "@clarity/resolvers",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "repository": "https://crgolden.visualstudio.com/Clarity/_git/Clarity.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",

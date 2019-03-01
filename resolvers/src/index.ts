@@ -1,4 +1,8 @@
-import { Resolve } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  RouterStateSnapshot
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import {
@@ -22,7 +26,7 @@ export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
   protected constructor(private readonly service: Service<T>) {
   }
 
-  resolve(): Observable<GridDataResult> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<GridDataResult> {
     return this.service.index$({
       skip: this.skip,
       take: this.take,
@@ -43,7 +47,7 @@ export abstract class DetailsResolver<T> implements Resolve<T> {
   protected constructor(private readonly service: Service<T>) {
   }
 
-  resolve(): Observable<T> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T> {
     return this.service.details$(this.ids).pipe(
       map(result => result),
       take(1));
