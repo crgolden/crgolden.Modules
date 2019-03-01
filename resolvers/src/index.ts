@@ -1,14 +1,9 @@
-import {
-  Resolve,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot
-} from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import {
   AggregateDescriptor,
   CompositeFilterDescriptor,
-  DataSourceRequestState,
   GroupDescriptor,
   SortDescriptor
 } from '@progress/kendo-data-query';
@@ -28,15 +23,14 @@ export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
   }
 
   resolve(): Observable<GridDataResult> {
-    const request: DataSourceRequestState = {
+    return this.service.index$({
       skip: this.skip,
       take: this.take,
       filter: this.filter,
       aggregates: this.aggregates,
       group: this.group,
       sort: this.sort
-    };
-    return this.service.index$(request).pipe(
+    }).pipe(
       map(result => result),
       take(1));
   }
@@ -44,13 +38,13 @@ export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
 
 export abstract class DetailsResolver<T> implements Resolve<T> {
 
-  protected keyValues: any[];
+  protected abstract ids: any[];
 
   protected constructor(private readonly service: Service<T>) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T> {
-    return this.service.details$(this.keyValues).pipe(
+  resolve(): Observable<T> {
+    return this.service.details$(this.ids).pipe(
       map(result => result),
       take(1));
   }
