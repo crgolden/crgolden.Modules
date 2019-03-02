@@ -24,17 +24,20 @@ export abstract class IndexResolver<T> implements Resolve<GridDataResult> {
   protected group: GroupDescriptor[];
 
   protected constructor(private readonly service: Service<T>) {
+    this.take = 5;
+    this.sort = [{
+      field: 'created',
+      dir: 'desc'
+    }];
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<GridDataResult> {
-    this.service.state = {
-      skip: this.skip,
-      take: this.take,
-      filter: this.filter,
-      aggregates: this.aggregates,
-      group: this.group,
-      sort: this.sort
-    };
+    this.service.state.skip = this.skip;
+    this.service.state.take = this.take;
+    this.service.state.filter = this.filter;
+    this.service.state.aggregates = this.aggregates;
+    this.service.state.group = this.group;
+    this.service.state.sort = this.sort;
     return this.service.index$().pipe(
       map(result => result),
       take(1));
