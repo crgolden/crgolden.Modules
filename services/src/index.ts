@@ -24,6 +24,16 @@ export abstract class Service<TClass> {
     protected readonly http: HttpClient) {
     this.state = {
     };
+    this.pageable = {
+      buttonCount: 1,
+      type: 'numeric',
+      info: false,
+      previousNext: true
+    };
+    this.sortable = {
+      allowUnsort: false,
+      mode: 'single'
+    };
   }
 
   private get headers(): HttpHeaders {
