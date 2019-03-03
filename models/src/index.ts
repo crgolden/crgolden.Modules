@@ -1,4 +1,4 @@
 export abstract class Model {
-  created: Date;
+  created?: Date;
   updated?: Date;
 }
