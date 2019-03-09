@@ -36,13 +36,13 @@ export abstract class Service<TClass> {
     };
   }
 
-  private get headers(): HttpHeaders {
+  protected get headers(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json'
     });
   }
 
-  private toQueryString(ids: any[]): string {
+  protected toQueryString(ids: any[]): string {
     return ids
       .reduce((result, id, index) => result + `ids[${index}]=${id}&`, '')
       .slice(0, -1);
