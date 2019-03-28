@@ -1,0 +1,27 @@
+{
+  "name": "@clarity/oidc-controllers",
+  "version": "0.1.4",
+  "repository": "https://crgolden.visualstudio.com/Clarity/_git/Clarity.Modules",
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json -c tslint.json 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "@angular/common": "latest",
+    "@angular/compiler": "latest",
+    "@angular/core": "latest",
+    "@clarity/core-claims": "latest",
+    "@clarity/oidc-models": "latest",
+    "oidc-client": "latest",
+    "rxjs": "latest",
+    "zone.js": "latest"
+  },
+  "devDependencies": {
+    "codelyzer": "latest",
+    "tslint": "latest",
+    "typescript": "~3.2.4"
+  }
+}

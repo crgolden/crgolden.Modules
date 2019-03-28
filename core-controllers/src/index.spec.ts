@@ -1,23 +1,23 @@
 import { } from 'jasmine';
 import { defer } from 'rxjs';
 import { GridDataResult } from '@progress/kendo-angular-grid';
-import { Service } from './index';
+import { ModelController } from './index';
 
-class ObjectService extends Service<object> {
+class ObjectController extends ModelController<object> {
   constructor(http: any) {
     super('', '', http);
   }
 }
 
 let httpClientSpy: any;
-let objectService: ObjectService;
+let objectController: ObjectController;
 let object1: object;
 
-describe('Service', () => {
+describe('ModelController', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete']);
-    objectService = new ObjectService(httpClientSpy);
+    objectController = new ObjectController(httpClientSpy);
     object1 = {
       id: '1',
       name: 'Object 1',
@@ -39,8 +39,8 @@ describe('Service', () => {
 
     httpClientSpy.get.and.returnValue(defer(() => Promise.resolve(objectsGridDataResult)));
 
-    objectService
-      .index$()
+    objectController
+      .list$()
       .subscribe((result: GridDataResult) => {
         expect(result).toEqual(objectsGridDataResult, 'expected objects');
         expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
@@ -51,8 +51,8 @@ describe('Service', () => {
   it('details should return a object', (done: DoneFn) => {
     httpClientSpy.get.and.returnValue(defer(() => Promise.resolve(object1)));
 
-    objectService
-      .details$([object1['id']])
+    objectController
+      .read$([object1['id']])
       .subscribe((result: object) => {
         expect(result).toEqual(object1, 'expected object1');
         expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
@@ -63,7 +63,7 @@ describe('Service', () => {
   it('create should return a object', (done: DoneFn) => {
     httpClientSpy.post.and.returnValue(defer(() => Promise.resolve(object1)));
 
-    objectService
+    objectController
       .create$(object1)
       .subscribe((result: object) => {
         expect(result).toEqual(object1, 'expected object1');
@@ -75,8 +75,8 @@ describe('Service', () => {
   it('edit should not return anything', (done: DoneFn) => {
     httpClientSpy.put.and.returnValue(defer(() => Promise.resolve()));
 
-    objectService
-      .edit$(object1)
+    objectController
+      .update$(object1)
       .subscribe((result: Object) => {
         expect(result).toBeUndefined('expected undefined');
         expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
@@ -87,7 +87,7 @@ describe('Service', () => {
   it('delete should not return anything', (done: DoneFn) => {
     httpClientSpy.delete.and.returnValue(defer(() => Promise.resolve()));
 
-    objectService
+    objectController
       .delete$([object1['id']])
       .subscribe((result: Object) => {
         expect(result).toBeUndefined('expected undefined');
@@ -98,7 +98,7 @@ describe('Service', () => {
 
   afterEach(() => {
     httpClientSpy = undefined;
-    objectService = undefined;
+    objectController = undefined;
     object1 = undefined;
   });
 
