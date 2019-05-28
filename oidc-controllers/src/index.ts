@@ -59,7 +59,7 @@ export abstract class AccountController {
 
   forgotPassword$(model: ForgotPassword): Observable<string> {
     return this.http
-      .post<string>(`${this.identityUrl}/cccount/forgot-password`, JSON.stringify(model), {
+      .post<string>(`${this.identityUrl}/account/forgot-password`, JSON.stringify(model), {
         headers: this.headers
       });
   }
