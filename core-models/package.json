@@ -1,6 +1,6 @@
 {
   "name": "@crgolden/core-models",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "https://github.com/crgolden/crgolden.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",
