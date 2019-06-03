@@ -1,7 +1,7 @@
 {
-  "name": "@clarity/oidc-models",
-  "version": "0.1.1",
-  "repository": "https://crgolden.visualstudio.com/Clarity/_git/Clarity.Modules",
+  "name": "@crgolden/oidc-models",
+  "version": "1.0.1",
+  "repository": "https://github.com/crgolden/crgolden.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@clarity/core-claims": "latest"
+    "@crgolden/core-claims": "1.0.0"
   },
   "devDependencies": {
     "typescript": "~3.2.4"

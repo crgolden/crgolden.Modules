@@ -1,7 +1,7 @@
 {
-  "name": "@clarity/core-claims",
-  "version": "0.1.0",
-  "repository": "https://crgolden.visualstudio.com/Clarity/_git/Clarity.Modules",
+  "name": "@crgolden/core-claims",
+  "version": "1.0.0",
+  "repository": "https://github.com/crgolden/crgolden.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

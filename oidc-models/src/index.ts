@@ -1,4 +1,4 @@
-import { Address } from '@clarity/core-claims';
+import { Address } from '@crgolden/core-claims';
 
 export class AuthenticationScheme {
   name: string;

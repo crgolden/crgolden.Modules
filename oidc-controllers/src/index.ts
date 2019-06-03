@@ -1,18 +1,18 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserManagerSettings, UserManager, User } from 'oidc-client';
-import { AuthenticationScheme } from '@clarity/oidc-models';
-import { ChangePassword } from '@clarity/oidc-models';
-import { ConfirmEmail } from '@clarity/oidc-models';
-import { DeletePersonalData } from '@clarity/oidc-models';
-import { EnableAuthenticator } from '@clarity/oidc-models';
-import { ExternalLogins } from '@clarity/oidc-models';
-import { ForgotPassword } from '@clarity/oidc-models';
-import { GenerateRecoveryCodes } from '@clarity/oidc-models';
-import { Profile } from '@clarity/oidc-models';
-import { Register } from '@clarity/oidc-models';
-import { ResetPassword } from '@clarity/oidc-models';
-import { SetPassword } from '@clarity/oidc-models';
+import { AuthenticationScheme } from '@crgolden/oidc-models';
+import { ChangePassword } from '@crgolden/oidc-models';
+import { ConfirmEmail } from '@crgolden/oidc-models';
+import { DeletePersonalData } from '@crgolden/oidc-models';
+import { EnableAuthenticator } from '@crgolden/oidc-models';
+import { ExternalLogins } from '@crgolden/oidc-models';
+import { ForgotPassword } from '@crgolden/oidc-models';
+import { GenerateRecoveryCodes } from '@crgolden/oidc-models';
+import { Profile } from '@crgolden/oidc-models';
+import { Register } from '@crgolden/oidc-models';
+import { ResetPassword } from '@crgolden/oidc-models';
+import { SetPassword } from '@crgolden/oidc-models';
 
 export abstract class AccountController {
 
