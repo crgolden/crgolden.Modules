@@ -1,6 +1,6 @@
 {
   "name": "@crgolden/oidc-controllers",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "https://github.com/crgolden/crgolden.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",
@@ -10,18 +10,18 @@
     "lint": "tslint --project tsconfig.json -c tslint.json 'src/**/*.ts'"
   },
   "dependencies": {
-    "@angular/common": "^7.2.11",
-    "@angular/compiler": "^7.2.11",
-    "@angular/core": "^7.2.11",
-    "@crgolden/core-claims": "^1.0.1",
-    "@crgolden/oidc-models": "^1.0.2",
-    "oidc-client": "^1.7.0",
-    "rxjs": "^6.4.0",
-    "zone.js": "~0.8.26"
+    "@angular/common": "^8.0.0",
+    "@angular/compiler": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@crgolden/core-claims": "^1.0.2",
+    "@crgolden/oidc-models": "^1.0.3",
+    "oidc-client": "^1.7.1",
+    "rxjs": "^6.5.2",
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "codelyzer": "^5.0.0",
-    "tslint": "^5.14.0",
-    "typescript": "~3.2.4"
+    "codelyzer": "^5.1.0",
+    "tslint": "^5.17.0",
+    "typescript": "~3.4.5"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@crgolden/oidc-models",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": "https://github.com/crgolden/crgolden.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",
@@ -9,9 +9,9 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@crgolden/core-claims": "1.0.1"
+    "@crgolden/core-claims": "1.0.2"
   },
   "devDependencies": {
-    "typescript": "~3.2.4"
+    "typescript": "~3.4.5"
   }
 }
