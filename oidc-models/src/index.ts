@@ -13,7 +13,7 @@ export class ChangePassword {
 
 export class ConfirmEmail {
   code: string;
-  userId: boolean;
+  userId: string;
 }
 
 export class DeletePersonalData {

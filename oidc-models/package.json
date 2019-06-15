@@ -1,6 +1,6 @@
 {
   "name": "@crgolden/oidc-models",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "repository": "https://github.com/crgolden/crgolden.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",
