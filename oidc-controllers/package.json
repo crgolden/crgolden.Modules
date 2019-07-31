@@ -1,6 +1,6 @@
 {
   "name": "@crgolden/oidc-controllers",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "repository": "https://github.com/crgolden/crgolden.Modules",
   "license": "UNLICENSED",
   "main": "dist/index.js",
@@ -13,8 +13,8 @@
     "@angular/common": "^8.0.0",
     "@angular/compiler": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@crgolden/core-claims": "^1.0.2",
-    "@crgolden/oidc-models": "^1.0.4",
+    "@crgolden/core-claims": "^1.0.0",
+    "@crgolden/oidc-models": "^1.0.1",
     "oidc-client": "^1.7.1",
     "rxjs": "^6.5.2",
     "zone.js": "~0.9.1"
